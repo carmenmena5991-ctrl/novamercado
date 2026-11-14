@@ -1,0 +1,132 @@
+[
+  {
+    "name": "pronostico_ventas",
+    "version": "5",
+    "creation_timestamp": 1794619497313,
+    "last_updated_timestamp": 1794619497313,
+    "current_stage": "None",
+    "description": "",
+    "source": "models:/m-c14356ef67ff4f8a86f2607e107649c8",
+    "run_id": "9ff7d9671c284b2897c305cc7f7044bd",
+    "status": "READY",
+    "tags": [
+      {
+        "key": "promovido",
+        "value": "False"
+      },
+      {
+        "key": "costo_validacion",
+        "value": "111567.4"
+      },
+      {
+        "key": "tipo",
+        "value": "hgb"
+      }
+    ],
+    "run_link": ""
+  },
+  {
+    "name": "pronostico_ventas",
+    "version": "4",
+    "creation_timestamp": 1794619438208,
+    "last_updated_timestamp": 1794619438208,
+    "current_stage": "None",
+    "description": "",
+    "source": "models:/m-97e0bf31844a400e9bd5eab31f1e5cbc",
+    "run_id": "238691f55a074901892160b35098f4ee",
+    "status": "READY",
+    "tags": [
+      {
+        "key": "promovido",
+        "value": "False"
+      },
+      {
+        "key": "costo_validacion",
+        "value": "111567.4"
+      },
+      {
+        "key": "tipo",
+        "value": "hgb"
+      }
+    ],
+    "run_link": ""
+  },
+  {
+    "name": "pronostico_ventas",
+    "version": "3",
+    "creation_timestamp": 1794619404862,
+    "last_updated_timestamp": 1794619404862,
+    "current_stage": "None",
+    "description": "",
+    "source": "models:/m-d48354bc0acb40dcbb969b6f602a6083",
+    "run_id": "891b02490fd7404a987a85075ee51b98",
+    "status": "READY",
+    "tags": [
+      {
+        "key": "promovido",
+        "value": "True"
+      },
+      {
+        "key": "costo_validacion",
+        "value": "98234.7"
+      },
+      {
+        "key": "tipo",
+        "value": "hgb"
+      }
+    ],
+    "run_link": ""
+  },
+  {
+    "name": "pronostico_ventas",
+    "version": "2",
+    "creation_timestamp": 1794619373869,
+    "last_updated_timestamp": 1794619373869,
+    "current_stage": "None",
+    "description": "",
+    "source": "models:/m-3df7ea0ae5ed433b990cfa6877b4f02a",
+    "run_id": "4d857af28268437d9d2a3ee385b70e49",
+    "status": "READY",
+    "tags": [
+      {
+        "key": "promovido",
+        "value": "False"
+      },
+      {
+        "key": "costo_validacion",
+        "value": "91026.9"
+      },
+      {
+        "key": "tipo",
+        "value": "hgb"
+      }
+    ],
+    "run_link": ""
+  },
+  {
+    "name": "pronostico_ventas",
+    "version": "1",
+    "creation_timestamp": 1794619298554,
+    "last_updated_timestamp": 1794619298554,
+    "current_stage": "None",
+    "description": "",
+    "source": "models:/m-20d7b738cdde4565878e1be6a601ebc8",
+    "run_id": "234d448c566d41e183bb861d69b120f0",
+    "status": "READY",
+    "tags": [
+      {
+        "key": "promovido",
+        "value": "True"
+      },
+      {
+        "key": "costo_validacion",
+        "value": "91770.7"
+      },
+      {
+        "key": "tipo",
+        "value": "hgb"
+      }
+    ],
+    "run_link": ""
+  }
+]

@@ -1,0 +1,14 @@
+# Datos publicados y credenciales: nunca en el repositorio
+data/
+.env
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.egg-info/
+
+# Artefactos locales
+mlruns/
+*.joblib

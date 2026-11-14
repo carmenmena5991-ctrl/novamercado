@@ -1,0 +1,12 @@
+{
+  "solicitud": [
+    1,
+    2,
+    3
+  ],
+  "endpoint": "/v1/prediccion",
+  "codigo_http": 422,
+  "respuesta": {
+    "detail": "el cuerpo debe ser un objeto JSON"
+  }
+}

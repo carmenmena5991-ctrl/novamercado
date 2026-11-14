@@ -1,0 +1,99 @@
+{
+  "solicitud": {
+    "tienda_id": 5,
+    "fecha": "2026-03-02",
+    "familias": {
+      "abarrotes": 1,
+      "bebidas": "2"
+    }
+  },
+  "endpoint": "/v1/prediccion",
+  "codigo_http": 200,
+  "respuesta": {
+    "tienda_id": 5,
+    "fecha": "2026-03-02",
+    "version_modelo": "3",
+    "predicciones": [
+      {
+        "familia_id": "abarrotes",
+        "venta_esperada": 1136.3,
+        "cantidad_sugerida": 1386
+      },
+      {
+        "familia_id": "bebidas",
+        "venta_esperada": 923.9,
+        "cantidad_sugerida": 1183
+      },
+      {
+        "familia_id": "lacteos",
+        "venta_esperada": 442.4,
+        "cantidad_sugerida": 434
+      },
+      {
+        "familia_id": "carnes",
+        "venta_esperada": 201.9,
+        "cantidad_sugerida": 202
+      },
+      {
+        "familia_id": "panaderia",
+        "venta_esperada": 241.2,
+        "cantidad_sugerida": 207
+      },
+      {
+        "familia_id": "frutas_verduras",
+        "venta_esperada": 366.8,
+        "cantidad_sugerida": 330
+      },
+      {
+        "familia_id": "limpieza",
+        "venta_esperada": 218.0,
+        "cantidad_sugerida": 275
+      },
+      {
+        "familia_id": "cuidado_personal",
+        "venta_esperada": 197.8,
+        "cantidad_sugerida": 265
+      },
+      {
+        "familia_id": "licores",
+        "venta_esperada": 77.0,
+        "cantidad_sugerida": 123
+      },
+      {
+        "familia_id": "snacks",
+        "venta_esperada": 279.7,
+        "cantidad_sugerida": 319
+      },
+      {
+        "familia_id": "bebe",
+        "venta_esperada": 73.3,
+        "cantidad_sugerida": 95
+      },
+      {
+        "familia_id": "mascotas",
+        "venta_esperada": 44.0,
+        "cantidad_sugerida": 56
+      }
+    ],
+    "calidad": {
+      "estado": "advertencia",
+      "observaciones": [
+        {
+          "campo": "familias",
+          "accion": "reparar",
+          "detalle": "'familias' llegó como objeto; se convirtió a lista de elementos"
+        },
+        {
+          "campo": "familias[1].en_promocion",
+          "accion": "reparar",
+          "detalle": "'2' (texto) se interpretó como 2"
+        },
+        {
+          "campo": "familias",
+          "accion": "advertir",
+          "detalle": "faltan 10 familias que la tienda vende (lacteos, carnes, panaderia, frutas_verduras, limpieza, cuidado_personal, licores, snacks, bebe, mascotas); se pronosticaron suponiendo en_promocion = 0"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,150 @@
+[
+  {
+    "dag_run_id": "reentreno_9c63fa3e146a",
+    "dag_id": "reentrenamiento_pronostico",
+    "logical_date": null,
+    "queued_at": "2026-11-14T01:22:33.365206Z",
+    "start_date": "2026-11-14T01:22:33.969710Z",
+    "end_date": "2026-11-14T01:22:56.242411Z",
+    "duration": 22.272701,
+    "data_interval_start": null,
+    "data_interval_end": null,
+    "run_after": "2026-11-14T01:22:33.308986Z",
+    "last_scheduling_decision": "2026-11-14T01:22:56.239470Z",
+    "run_type": "manual",
+    "state": "success",
+    "triggered_by": "rest_api",
+    "triggering_user_name": "admin",
+    "conf": {
+      "reentrenamiento_id": "reentreno_9c63fa3e146a"
+    },
+    "note": null,
+    "dag_versions": [
+      {
+        "id": "01a1d7a5-6737-7f7e-a8a1-bdbe93307ff6",
+        "version_number": 1,
+        "dag_id": "reentrenamiento_pronostico",
+        "bundle_name": "dags-folder",
+        "bundle_version": null,
+        "created_at": "2026-11-14T01:21:43.736025Z",
+        "dag_display_name": "reentrenamiento_pronostico",
+        "bundle_url": null
+      }
+    ],
+    "bundle_version": null,
+    "dag_display_name": "reentrenamiento_pronostico",
+    "partition_key": null,
+    "partition_date": null
+  },
+  {
+    "dag_run_id": "reentreno_108b5de6a5a4",
+    "dag_id": "reentrenamiento_pronostico",
+    "logical_date": null,
+    "queued_at": "2026-11-14T01:23:11.070269Z",
+    "start_date": "2026-11-14T01:23:11.283420Z",
+    "end_date": "2026-11-14T01:23:27.463996Z",
+    "duration": 16.180576,
+    "data_interval_start": null,
+    "data_interval_end": null,
+    "run_after": "2026-11-14T01:23:11.062133Z",
+    "last_scheduling_decision": "2026-11-14T01:23:27.461835Z",
+    "run_type": "manual",
+    "state": "success",
+    "triggered_by": "rest_api",
+    "triggering_user_name": "admin",
+    "conf": {
+      "reentrenamiento_id": "reentreno_108b5de6a5a4"
+    },
+    "note": null,
+    "dag_versions": [
+      {
+        "id": "01a1d7a5-6737-7f7e-a8a1-bdbe93307ff6",
+        "version_number": 1,
+        "dag_id": "reentrenamiento_pronostico",
+        "bundle_name": "dags-folder",
+        "bundle_version": null,
+        "created_at": "2026-11-14T01:21:43.736025Z",
+        "dag_display_name": "reentrenamiento_pronostico",
+        "bundle_url": null
+      }
+    ],
+    "bundle_version": null,
+    "dag_display_name": "reentrenamiento_pronostico",
+    "partition_key": null,
+    "partition_date": null
+  },
+  {
+    "dag_run_id": "reentreno_d7e1ff79d315",
+    "dag_id": "reentrenamiento_pronostico",
+    "logical_date": null,
+    "queued_at": "2026-11-14T01:23:43.913223Z",
+    "start_date": "2026-11-14T01:23:44.267695Z",
+    "end_date": "2026-11-14T01:24:00.661670Z",
+    "duration": 16.393975,
+    "data_interval_start": null,
+    "data_interval_end": null,
+    "run_after": "2026-11-14T01:23:43.907697Z",
+    "last_scheduling_decision": "2026-11-14T01:24:00.659789Z",
+    "run_type": "manual",
+    "state": "success",
+    "triggered_by": "rest_api",
+    "triggering_user_name": "admin",
+    "conf": {
+      "reentrenamiento_id": "reentreno_d7e1ff79d315"
+    },
+    "note": null,
+    "dag_versions": [
+      {
+        "id": "01a1d7a5-6737-7f7e-a8a1-bdbe93307ff6",
+        "version_number": 1,
+        "dag_id": "reentrenamiento_pronostico",
+        "bundle_name": "dags-folder",
+        "bundle_version": null,
+        "created_at": "2026-11-14T01:21:43.736025Z",
+        "dag_display_name": "reentrenamiento_pronostico",
+        "bundle_url": null
+      }
+    ],
+    "bundle_version": null,
+    "dag_display_name": "reentrenamiento_pronostico",
+    "partition_key": null,
+    "partition_date": null
+  },
+  {
+    "dag_run_id": "reentreno_0b47db918eef",
+    "dag_id": "reentrenamiento_pronostico",
+    "logical_date": null,
+    "queued_at": "2026-11-14T01:24:37.473041Z",
+    "start_date": "2026-11-14T01:24:37.525937Z",
+    "end_date": "2026-11-14T01:24:59.811835Z",
+    "duration": 22.285898,
+    "data_interval_start": null,
+    "data_interval_end": null,
+    "run_after": "2026-11-14T01:24:37.465773Z",
+    "last_scheduling_decision": "2026-11-14T01:24:59.807926Z",
+    "run_type": "manual",
+    "state": "success",
+    "triggered_by": "rest_api",
+    "triggering_user_name": "admin",
+    "conf": {
+      "reentrenamiento_id": "reentreno_0b47db918eef"
+    },
+    "note": null,
+    "dag_versions": [
+      {
+        "id": "01a1d7a5-6737-7f7e-a8a1-bdbe93307ff6",
+        "version_number": 1,
+        "dag_id": "reentrenamiento_pronostico",
+        "bundle_name": "dags-folder",
+        "bundle_version": null,
+        "created_at": "2026-11-14T01:21:43.736025Z",
+        "dag_display_name": "reentrenamiento_pronostico",
+        "bundle_url": null
+      }
+    ],
+    "bundle_version": null,
+    "dag_display_name": "reentrenamiento_pronostico",
+    "partition_key": null,
+    "partition_date": null
+  }
+]

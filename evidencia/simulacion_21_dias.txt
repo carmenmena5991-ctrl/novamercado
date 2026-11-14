@@ -1,0 +1,27 @@
+2026-03-01 costo      3994  versión 1
+2026-03-02 costo      3572  versión 1
+2026-03-03 costo      2578  versión 1
+2026-03-04 costo      2575  versión 1
+2026-03-05 costo      2585  versión 1
+2026-03-06 costo      3042  versión 1
+2026-03-07 costo      3753  versión 1
+  reentrenamiento reentreno_9c63fa3e146a (25 s): {'estado': 'exitoso', 'promovido': False, 'version': '1', 'motivo': 'Costo en validación 91 027 vs 91 646 del vigente; no mejora al menos 1%, se conserva el vigente (candidato hgb, versión 2)'}
+2026-03-08 costo      3309  versión 1
+2026-03-09 costo      4858  versión 1  (demanda x1.3)
+2026-03-10 costo      4684  versión 1  (demanda x1.3)
+2026-03-11 costo      3566  versión 1  (demanda x1.3)
+2026-03-12 costo      4300  versión 1  (demanda x1.3)
+2026-03-13 costo      5876  versión 1  (demanda x1.3)
+2026-03-14 costo      9261  versión 1  (demanda x1.3)
+  reentrenamiento reentreno_108b5de6a5a4 (20 s): {'estado': 'exitoso', 'promovido': True, 'version': '3', 'motivo': 'Costo en validación 98 235 vs 99 861 del vigente (candidato hgb, versión 3)'}
+  la API usa la versión 3 tras 0 s
+2026-03-15 costo      5206  versión 3  (demanda x1.3)
+2026-03-16 costo      3640  versión 3  (demanda x1.3)
+2026-03-17 costo      3485  versión 3  (demanda x1.3)
+2026-03-18 costo      3968  versión 3  (demanda x1.3)
+2026-03-19 costo      4619  versión 3  (demanda x1.3)
+2026-03-20 costo      4609  versión 3  (demanda x1.3)
+2026-03-21 costo      6241  versión 3  (demanda x1.3)
+  reentrenamiento reentreno_d7e1ff79d315 (20 s): {'estado': 'exitoso', 'promovido': False, 'version': '3', 'motivo': 'Costo en validación 111 567 vs 110 020 del vigente; no mejora al menos 1%, se conserva el vigente (candidato hgb, versión 4)'}
+costo total 89719; predicciones por versión {'1': 140, '3': 70}
+FIN

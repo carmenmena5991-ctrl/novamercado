@@ -1,0 +1,17 @@
+{
+  "solicitud": {
+    "tienda_id": 5,
+    "fecha": "2031-01-01",
+    "familias": [
+      {
+        "familia_id": "abarrotes",
+        "en_promocion": 0
+      }
+    ]
+  },
+  "endpoint": "/v1/prediccion",
+  "codigo_http": 422,
+  "respuesta": {
+    "detail": "la fecha 2031-01-01 es posterior al calendario de feriados publicado (hasta 2026-12-31)"
+  }
+}

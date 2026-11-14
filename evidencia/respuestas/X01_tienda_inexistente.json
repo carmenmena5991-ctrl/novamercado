@@ -1,0 +1,17 @@
+{
+  "solicitud": {
+    "tienda_id": 42,
+    "fecha": "2026-03-02",
+    "familias": [
+      {
+        "familia_id": "abarrotes",
+        "en_promocion": 0
+      }
+    ]
+  },
+  "endpoint": "/v1/prediccion",
+  "codigo_http": 422,
+  "respuesta": {
+    "detail": "la tienda 42 no existe en el catálogo de tiendas"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "solicitud": {
+    "tienda_id": 5,
+    "fecha": "2026-03-01",
+    "ventas": [
+      {
+        "familia_id": "abarrotes",
+        "ventas": "abc"
+      },
+      {
+        "familia_id": "bebidas",
+        "ventas": "1.234"
+      }
+    ]
+  },
+  "endpoint": "/v1/observaciones",
+  "codigo_http": 200,
+  "respuesta": {
+    "registros_guardados": 1,
+    "calidad": {
+      "estado": "advertencia",
+      "observaciones": [
+        {
+          "campo": "ventas[0].ventas",
+          "accion": "advertir",
+          "detalle": "ventas 'abc' no es numérico; no se registró"
+        },
+        {
+          "campo": "ventas[1].ventas",
+          "accion": "advertir",
+          "detalle": "'1.234' es ambiguo; se supuso 1234 (punto como separador de miles)"
+        },
+        {
+          "campo": "ventas",
+          "accion": "advertir",
+          "detalle": "no se recibieron ventas válidas de 11 familias (abarrotes, lacteos, carnes, panaderia, frutas_verduras, limpieza, cuidado_personal, licores, snacks, bebe, mascotas); quedan sin registrar"
+        },
+        {
+          "campo": "ventas",
+          "accion": "advertir",
+          "detalle": "'bebidas' ya estaba registrada con 1225; se reemplazó por 1234"
+        }
+      ]
+    }
+  }
+}
