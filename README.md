@@ -5,6 +5,23 @@ cada tienda, defiende su contrato ante datos defectuosos, registra lo que predic
 realmente ocurre, y se reentrena con esa información. Integra **FastAPI**, **PostgreSQL**,
 **MLflow** y **Apache Airflow**, todo levantado con `docker compose up`.
 
+## Versión entregada
+
+| | |
+|---|---|
+| Laboratorio | Laboratorio 2 — Servicio de ML en Producción (Product Development) |
+| Tag de entrega | **`entrega-lab2`** |
+| Versión del producto | **1.0.0** (`pyproject.toml`, imágenes `novamercado/api:1.0.0` y `novamercado/airflow:3.3.2`) |
+| Release | [entrega-lab2](https://github.com/carmenmena5991-ctrl/novamercado/releases/tag/entrega-lab2) |
+
+La versión que se evalúa es exactamente el commit al que apunta el tag `entrega-lab2`:
+
+```bash
+git clone https://github.com/carmenmena5991-ctrl/novamercado.git && cd novamercado
+git checkout entrega-lab2
+git log -1 --format='%h %ci %s'   # commit entregado
+```
+
 ## Requisitos
 
 - Docker Engine / Docker Desktop con Compose v2.
@@ -14,7 +31,7 @@ realmente ocurre, y se reentrena con esa información. Integra **FastAPI**, **Po
 ## Levantar desde cero
 
 ```bash
-git clone <repo> && cd novamercado
+git clone https://github.com/carmenmena5991-ctrl/novamercado.git && cd novamercado
 git checkout entrega-lab2
 
 # 1. Credenciales locales (no se versionan)
