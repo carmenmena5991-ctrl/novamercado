@@ -100,7 +100,9 @@ dags/                 DAG de reentrenamiento (Airflow 3)
 docker/               Dockerfiles y dependencias con versiones fijas
 tests/                pytest
 scripts/              pruebas de punta a punta y simulación de operación
-evidencia/            respuestas de la API, simulación, capturas de MLflow/Airflow
+evidencia/            EVIDENCIA.md (resumen), respuestas de la API (válidas y defectuosas),
+                      versiones y runs de MLflow y ejecuciones del DAG exportadas en JSON,
+                      y la simulación de 21 días
 DECISIONES.md         decisiones técnicas y de producto
 ```
 
