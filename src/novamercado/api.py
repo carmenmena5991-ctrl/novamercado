@@ -8,7 +8,9 @@ from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from typing import Any, Callable
 
-from fastapi import Body, FastAPI
+from fastapi import Body, FastAPI, Request
+from fastapi.concurrency import run_in_threadpool
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
@@ -66,6 +68,28 @@ def crear_app(dep: Dependencias) -> FastAPI:
             dep.repo.registrar_solicitud(sid, endpoint, cuerpo, 422, detalle=detalle)
         except Exception as e:  # noqa: BLE001 - el rechazo se responde aunque no se registre
             log.error("no se pudo registrar el rechazo %s: %s", sid, e)
+
+    # Cuerpos que FastAPI no logra leer (JSON inválido o ausente): 422 con `detail` en texto,
+    # como cualquier otro rechazo del contrato, y registro de la solicitud con el cuerpo crudo.
+    @app.exception_handler(RequestValidationError)
+    async def _validacion(request: Request, exc: RequestValidationError) -> JSONResponse:
+        errores = exc.errors()
+        primero = errores[0] if errores else {}
+        tipo = primero.get("type", "")
+        if tipo == "json_invalid":
+            error = (primero.get("ctx") or {}).get("error", "")
+            detalle = f"el cuerpo no es JSON válido ({error})" if error else \
+                "el cuerpo no es JSON válido"
+        elif tipo == "missing" and tuple(primero.get("loc", ())) == ("body",):
+            detalle = "falta el cuerpo de la solicitud: debe ser un objeto JSON"
+        else:
+            detalle = f"la solicitud no cumple el contrato: {primero.get('msg', 'inválida')}"
+        ruta = request.url.path
+        if ruta in ("/v1/prediccion", "/v1/observaciones"):
+            crudo = (await request.body()).decode("utf-8", errors="replace")[:10_000]
+            await run_in_threadpool(_registrar_rechazo, str(uuid.uuid4()), ruta,
+                                    {"cuerpo_crudo": crudo}, detalle)
+        return _rechazo(detalle)
 
     # ------------------------------------------------------------------ predicción
     @app.post("/v1/prediccion", response_model=RespuestaPrediccion,

@@ -27,6 +27,10 @@ ADVERTIR = "advertir"
 # Máximo de días entre el último dato de ventas y la fecha pedida sin advertir.
 DIAS_SIN_DATOS_TOLERADOS = 7
 
+# Productos en promoción por familia por encima de este valor se consideran inverosímiles
+# (el histórico publicado no pasa de unas decenas): se acotan con advertencia.
+PROMOCION_MAXIMA = 1000
+
 
 class Rechazo(Exception):
     """La solicitud no se puede atender sin inventar datos: se responde 422."""
@@ -477,6 +481,10 @@ def _promocion(crudo: Any, presente: bool, ruta: str, bit: Bitacora) -> int:
     if n.valor < 0:
         bit.advertir(ruta, f"en_promocion {crudo!r} es negativo; se supuso 0")
         return 0
+    if n.valor > PROMOCION_MAXIMA:
+        bit.advertir(ruta, f"en_promocion {crudo!r} es inverosímil (más de {PROMOCION_MAXIMA}); "
+                           f"se acotó a {PROMOCION_MAXIMA}")
+        return PROMOCION_MAXIMA
     if not float(n.valor).is_integer():
         redondeado = int(round(n.valor))
         bit.advertir(ruta, f"en_promocion {crudo!r} no es entero; se redondeó a {redondeado}")

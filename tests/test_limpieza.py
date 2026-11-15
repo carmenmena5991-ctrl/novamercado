@@ -76,6 +76,8 @@ def test_familia_desconocida_se_ignora_y_se_completa(cat):
 @pytest.mark.parametrize("valor,esperado,accion", [
     ("3", 3, "reparar"), (2.0, 2, "reparar"), (" 4 ", 4, "reparar"),
     (2.5, 2, "advertir"), (-1, 0, "advertir"), ("tres", 0, "advertir"), (None, 0, "advertir"),
+    (1e12, 1000, "advertir"), ("5000", 1000, "advertir"), (float("nan"), 0, "advertir"),
+    (float("inf"), 0, "advertir"),
 ])
 def test_e03_promocion(cat, valor, esperado, accion):
     s = solicitud_valida()

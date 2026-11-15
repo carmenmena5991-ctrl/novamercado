@@ -5,6 +5,7 @@ import datetime as dt
 import hashlib
 import json
 import logging
+import math
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Iterator
@@ -194,14 +195,15 @@ class RepositorioPostgres:
                 "INSERT INTO solicitudes (id, endpoint, cuerpo, tienda_id, fecha, codigo_http, "
                 "estado_calidad, detalle, version_modelo) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 (solicitud_id, endpoint, Jsonb(_jsonable(cuerpo)), tienda_id, fecha, codigo,
-                 (calidad or {}).get("estado"), detalle, version))
+                 (calidad or {}).get("estado"), texto_seguro(detalle), version))
             obs = (calidad or {}).get("observaciones", [])
             if obs:
                 with c.cursor() as cur:
                     cur.executemany(
                         "INSERT INTO correcciones (solicitud_id, campo, accion, detalle) "
                         "VALUES (%s,%s,%s,%s)",
-                        [(solicitud_id, o["campo"], o["accion"], o["detalle"]) for o in obs])
+                        [(solicitud_id, texto_seguro(o["campo"]), o["accion"],
+                          texto_seguro(o["detalle"])) for o in obs])
             if predicciones:
                 with c.cursor() as cur:
                     cur.executemany(
@@ -279,4 +281,21 @@ class RepositorioPostgres:
 
 
 def _jsonable(obj: Any) -> Any:
-    return json.loads(json.dumps(obj, default=str))
+    """Convierte a JSON que PostgreSQL acepta: JSONB no admite NaN/Infinity (que el módulo
+    json de Python sí produce y acepta) ni el carácter \\u0000."""
+    def limpiar(x: Any) -> Any:
+        if isinstance(x, float) and not math.isfinite(x):
+            return repr(x)  # 'nan', 'inf', '-inf' como texto: se conserva lo que llegó
+        if isinstance(x, str):
+            return texto_seguro(x)
+        if isinstance(x, dict):
+            return {texto_seguro(str(k)): limpiar(v) for k, v in x.items()}
+        if isinstance(x, list):
+            return [limpiar(v) for v in x]
+        return x
+    return limpiar(json.loads(json.dumps(obj, default=str)))
+
+
+def texto_seguro(s: str | None) -> str | None:
+    """PostgreSQL no admite el carácter NUL en columnas de texto."""
+    return s.replace("\x00", "\\u0000") if isinstance(s, str) else s

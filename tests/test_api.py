@@ -1,6 +1,8 @@
 """Contrato HTTP del Anexo, sin MLflow ni Airflow reales."""
 from __future__ import annotations
 
+import pytest
+
 from .conftest import observacion_valida, solicitud_valida
 
 
@@ -46,10 +48,15 @@ def test_rechazo_responde_422_con_detail_y_se_registra(entorno):
     assert entorno["repo"].solicitudes[-1]["codigo"] == 422
 
 
-def test_json_invalido_responde_422(entorno):
-    r = entorno["cliente"].post("/v1/prediccion", content=b"{no es json",
+@pytest.mark.parametrize("ruta", ["/v1/prediccion", "/v1/observaciones"])
+@pytest.mark.parametrize("cuerpo", [b"{no es json", b"null", b""])
+def test_cuerpo_ilegible_responde_422_con_detail_texto_y_se_registra(entorno, ruta, cuerpo):
+    r = entorno["cliente"].post(ruta, content=cuerpo,
                                 headers={"Content-Type": "application/json"})
-    assert r.status_code == 422 and "detail" in r.json()
+    assert r.status_code == 422
+    assert isinstance(r.json()["detail"], str) and r.json()["detail"]
+    registro = entorno["repo"].solicitudes[-1]
+    assert registro["endpoint"] == ruta and registro["codigo"] == 422
 
 
 def test_misma_fecha_puede_pedirse_dos_veces(entorno):
@@ -172,3 +179,23 @@ def test_recarga_en_caliente_de_version(entorno, bundle):
     gestor.sincronizar()
     cuerpo = entorno["cliente"].post("/v1/prediccion", json=solicitud_valida()).json()
     assert cuerpo["version_modelo"] == "4"
+
+
+def test_promocion_inverosimil_se_acota_y_se_advierte(entorno):
+    s = solicitud_valida()
+    s["familias"][0]["en_promocion"] = 1e12
+    cuerpo = entorno["cliente"].post("/v1/prediccion", json=s).json()
+    assert cuerpo["calidad"]["estado"] == "advertencia"
+    registro = entorno["repo"].solicitudes[-1]
+    assert registro["predicciones"][0]["en_promocion"] == 1000
+
+
+def test_cuerpo_con_nan_se_guarda_como_json_valido_para_postgres():
+    import json
+    from novamercado.db import _jsonable, texto_seguro
+    nul = chr(0)
+    limpio = _jsonable({"a": float("nan"), "b": [float("inf")], "c" + nul: "x" + nul})
+    texto = json.dumps(limpio, allow_nan=False)  # lanzaría si quedara NaN/Infinity
+    assert nul not in texto
+    assert limpio["a"] == "nan" and limpio["b"] == ["inf"]
+    assert nul not in texto_seguro("campo" + nul)

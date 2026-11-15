@@ -14,7 +14,8 @@ vistos. Implementación: `src/novamercado/limpieza.py`; pruebas: `tests/test_lim
 | Nombre de campo distinto (E07) | reparar | Se normaliza (minúsculas, sin acentos, `_`); se acepta sinónimo conocido o coincidencia aproximada única (≥ 0.8). Dos sinónimos con valores distintos → **rechazar**. |
 | Campo que no es del contrato | advertir | Se ignora y se informa. |
 | Campo obligatorio ausente o nulo | rechazar | No hay con qué pronosticar. |
-| Cuerpo que no es objeto / JSON inválido | rechazar | 422 con `detail`. |
+| Cuerpo que no es objeto / JSON inválido / ausente | rechazar | 422 con `detail` en texto; la solicitud se registra con el cuerpo crudo. |
+| Valores `NaN` / `Infinity` (JSON no estándar) | según el campo | Se tratan como no numéricos (p. ej. promoción → 0 con advertencia) y en la base se guardan como texto, porque JSONB no los admite. |
 | Tienda como texto o con prefijo (E01) | reparar | `"5"`, `"T05"`, `"Tienda 5"`, `5.0`, nombre exacto de la tienda. |
 | Tienda inexistente, ambigua (`"5-6"`), decimal (`5.5`), booleano | rechazar | No se puede suponer de qué tienda se trata. |
 | Fecha en otro formato inequívoco (E04) | reparar | ISO con hora, `AAAA/MM/DD`, `AAAAMMDD`, `DD/MM/AAAA` con día > 12, `MM/DD/AAAA` con mes ≤ 12 < día, "17 de noviembre de 2025". |
@@ -30,6 +31,7 @@ vistos. Implementación: `src/novamercado/limpieza.py`; pruebas: `tests/test_lim
 | Familia repetida, valores distintos (E06) | advertir | Se usa el **último** valor (corrección más reciente) y se informan todos. |
 | Promoción como texto o `2.0` (E03) | reparar | |
 | Promoción decimal, negativa, no numérica o ausente | advertir | Se redondea o se supone 0. |
+| Promoción inverosímil (> 1000 productos) | advertir | Se acota a 1000 (el histórico no pasa de unas decenas); evita que un error de captura domine el pronóstico. |
 | Lista como objeto `{"abarrotes": 3}` | reparar | Se convierte a lista. |
 | Lista vacía / ninguna familia válida | rechazar | |
 | Ventas con separador de miles o coma decimal (E10) | reparar | `"1,234"` → 1234, `"812,0"` → 812, `"1.234.567"`, `"1.234,5"`. |
